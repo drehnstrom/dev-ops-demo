@@ -1,3 +1,17 @@
 # This installs all the libraries listed in the requirements.txt file into the lib folder.
 # Required for App Eniung Upload.
 pip install -t lib -r requirements.txt
+
+
+# git commands
+git add --all
+
+git commit -a -m "Initial Commit Flask App"
+
+git push origin master
+
+
+# App Engine Commands
+gcloud app create --region=us-central
+
+gcloud app deploy --version=one --no-promote
