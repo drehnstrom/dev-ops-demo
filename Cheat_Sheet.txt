@@ -15,3 +15,17 @@ git push origin master
 gcloud app create --region=us-central
 
 gcloud app deploy --version=one --no-promote
+
+
+
+# GCP Container Builder to build Docker image
+gcloud container builds submit --tag gcr.io/dev-ops-demo/converter-web-site .
+
+# Pull the container for the GCP Container Registry
+gcloud docker -- pull gcr.io/dev-ops-demo/converter-web-site:latest
+
+# Run Docker image on local machine 
+docker run -d -p 80:80 gcr.io/dev-ops-demo/converter-web-site:latest
+
+
+
