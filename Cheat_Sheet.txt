@@ -10,6 +10,9 @@ git commit -a -m "Initial Commit Flask App"
 
 git push origin master
 
+# To push changes to GitHub
+git push github master
+
 
 # App Engine Commands
 gcloud app create --region=us-central
@@ -48,7 +51,8 @@ kubectl delete -f gke-config.yaml
 
 # Delete the Cluster
 gcloud container clusters delete converter-cluster --zone "us-central1-a"
-git 
+
+
 ....
 
 
