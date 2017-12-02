@@ -47,8 +47,8 @@ kubectl get service
 kubectl delete -f gke-config.yaml
 
 # Delete the Cluster
-gcloud container clusters delete converter-cluster
-
+gcloud container clusters delete converter-cluster --zone "us-central1-a"
+git 
 ....
 
 
