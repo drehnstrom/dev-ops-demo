@@ -29,10 +29,10 @@ docker run -d -p 80:80 gcr.io/dev-ops-demo/converter-web-site:latest
 
 
 # Create a cluster in drehnstrom-1171 project - uses all the defaults
-gcloud container clusters create converter-cluster  --project=<project id here>
+gcloud container clusters create converter-cluster --zone "us-central1-a"  --project=<project id here>
 
 #  Get authorization to the Cluster
-gcloud container clusters get-credentials converter-cluster
+gcloud container clusters get-credentials converter-cluster --zone "us-central1-a"
 
 # Deploys the container bsed on YAML configuration
 kubectl create -f gke-config.yaml
@@ -48,6 +48,8 @@ kubectl delete -f gke-config.yaml
 
 # Delete the Cluster
 gcloud container clusters delete converter-cluster
+
+....
 
 
 
