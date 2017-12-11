@@ -36,10 +36,10 @@ docker run -d -p 80:80 gcr.io/dev-ops-demo/converter-web-site:latest
 
 
 # Create a cluster in specified project - uses all the defaults
-gcloud container clusters create converter-cluster --zone "us-central1-a" --project=<project id here>
+gcloud container clusters create converter-cluster --zone "us-central1-a" --num-nodes "2" --project=dev-ops-demo
 
 #  Get authorization to the Cluster
-gcloud container clusters get-credentials converter-cluster --zone "us-central1-a" --project=<project id here>
+gcloud container clusters get-credentials converter-cluster --zone "us-central1-a" --project=dev-ops-demo
 
 # Deploys the container bsed on YAML configuration
 kubectl create -f gke-config.yaml
@@ -49,6 +49,10 @@ kubectl get pods
 
 # Need the IP Address - Type
 kubectl get service
+
+# Do a rolling updqte
+kubectl rolling-update converter-
+frontend --image=gcr.io/dev-ops-demo/converter-web-site:latest --image-pull-policy=Never
 
 # To delete the service created by previous command
 kubectl delete -f gke-config.yaml
