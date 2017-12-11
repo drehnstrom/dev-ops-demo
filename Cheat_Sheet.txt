@@ -1,5 +1,5 @@
 # This installs all the libraries listed in the requirements.txt file into the lib folder.
-# Required for App Eniung Upload.
+# Required for App Engine Upload.
 pip install -t lib -r requirements.txt
 
 # git commands
@@ -13,11 +13,16 @@ git push origin master
 git push github master
 
 
+#Unit Testing Info - Tests are in file with *_test.py name
+# To execute tests run:
+pytest
+
+
 # App Engine Commands
 gcloud app create --region=us-central
 
+# Deploy App Engine (Remove --no-promote to have this version take requests immediately)
 gcloud app deploy --version=one --no-promote
-
 
 
 # GCP Container Builder to build Docker image
@@ -30,11 +35,11 @@ gcloud docker -- pull gcr.io/dev-ops-demo/converter-web-site:latest
 docker run -d -p 80:80 gcr.io/dev-ops-demo/converter-web-site:latest
 
 
-# Create a cluster in drehnstrom-1171 project - uses all the defaults
-gcloud container clusters create converter-cluster --zone "us-central1-a"  --project=<project id here>
+# Create a cluster in specified project - uses all the defaults
+gcloud container clusters create converter-cluster --zone "us-central1-a" --project=<project id here>
 
 #  Get authorization to the Cluster
-gcloud container clusters get-credentials converter-cluster --zone "us-central1-a"
+gcloud container clusters get-credentials converter-cluster --zone "us-central1-a" --project=<project id here>
 
 # Deploys the container bsed on YAML configuration
 kubectl create -f gke-config.yaml
@@ -49,7 +54,7 @@ kubectl get service
 kubectl delete -f gke-config.yaml
 
 # Delete the Cluster
-gcloud container clusters delete converter-cluster --zone "us-central1-a"
+gcloud container clusters delete converter-cluster --zone "us-central1-a"  --project=<project id here>
 
 
 ....
