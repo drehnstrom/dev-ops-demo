@@ -2,7 +2,6 @@
 # Required for App Eniung Upload.
 pip install -t lib -r requirements.txt
 
-
 # git commands
 git add --all
 
