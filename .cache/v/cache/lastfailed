@@ -1,0 +1,9 @@
+{
+  "Converter_test.py::TestConverter::()::test_constructor": true, 
+  "Converter_test.py::TestConverter::()::test_properties": true, 
+  "Converter_test.py::TestConverter::()::test_tempToConvert": true, 
+  "Converter_test.py::TestConverter::()::test_test": true, 
+  "Converter_test.py::TestConverter::()::test_toCelsius": true, 
+  "Converter_test.py::TestConverter::()::test_toFahrenheit": true, 
+  "tests/Converter_test.py": true
+}
