@@ -16,7 +16,7 @@ kind: ReplicationController
 metadata:
   name: converter-frontend
 spec:
-  replicas: 6
+  replicas: 3
   template:
     metadata:
       labels:

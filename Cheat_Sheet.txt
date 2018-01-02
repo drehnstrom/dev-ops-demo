@@ -24,6 +24,31 @@ gcloud app create --region=us-central
 # Deploy App Engine (Remove --no-promote to have this version take requests immediately)
 gcloud app deploy --version=one --no-promote
 
+#####  DOCKER COMMANDS #########
+docker build -t drehnstrom/converter-web-site:latest .
+
+# Run Docker image on Cloud Shell  
+docker run -d -p 8080:8080 drehnstrom/converter-web-site:latest
+
+# Run Docker image on Compute Engine VM 
+docker run -d -p 80:8080 drehnstrom/converter-web-site:latest
+
+
+
+#To find out status of containers
+docker ps
+
+#To stop container
+docker stop <container-id-here>
+
+# To Push, first log into docker
+docker login
+
+#To Push to Docker Hub
+docker push drehnstrom/converter-web-site
+
+
+
 
 # GCP Container Builder to build Docker image
 gcloud container builds submit --tag gcr.io/dev-ops-demo/converter-web-site .
@@ -62,6 +87,8 @@ gcloud container clusters delete converter-cluster --zone "us-central1-a"  --pro
 
 
 ....
+
+#### More Kubernetes Commands #####
 
 
 
