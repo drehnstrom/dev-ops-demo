@@ -1,7 +1,3 @@
-# This installs all the libraries listed in the requirements.txt file into the lib folder.
-# Required for App Engine Upload.
-pip install -t lib -r requirements.txt
-
 # git commands
 git add --all
 
