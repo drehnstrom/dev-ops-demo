@@ -73,7 +73,6 @@ kubectl scale deployment devops-deployment --replicas=10
 kubectl autoscale deployment devops-deployment --min=5 --max=10 --cpu-percent=60
 
 
-
 # App Engine Commands
 gcloud app create --region=us-central
 
