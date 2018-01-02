@@ -17,8 +17,6 @@ docker build -t drehnstrom/devops-demo:latest .
 # Run Docker image on Cloud Shell  
 docker run -d -p 8080:8080 drehnstrom/devops-demo
 
-# Run Docker image on Compute Engine VM 
-docker run -d -p 80:8080 drehnstrom/converter-web-site:latest
 
 #To find out status of containers
 docker ps
@@ -43,13 +41,13 @@ docker run -d -p 8080:8080 gcr.io/dev-ops-demo/devops-demo
 
 
 # Create a cluster in specified project - uses all the defaults
-gcloud container clusters create converter-cluster --zone "us-central1-a" --num-nodes "2" --project=dev-ops-demo
+gcloud container clusters create devops-cluster --zone "us-central1-a" --project=dev-ops-demo
 
 #  Get authorization to the Cluster
-gcloud container clusters get-credentials converter-cluster --zone "us-central1-a" --project=dev-ops-demo
+gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=dev-ops-demo
 
 # Deploys the container bsed on YAML configuration
-kubectl create -f gke-config.yaml
+kubectl create -f kubernetes-config.yaml --validate=false
 
 # To see the pods - Must be ready takes maybe a minute
 kubectl get pods
@@ -57,23 +55,22 @@ kubectl get pods
 # Need the IP Address - Type
 kubectl get service
 
-# Do a rolling updqte
-kubectl rolling-update converter-
-frontend --image=gcr.io/dev-ops-demo/converter-web-site:latest --image-pull-policy=Never
-
 # To delete the service created by previous command
-kubectl delete -f gke-config.yaml
+kubectl delete -f kubernetes-config.yaml
 
 # Delete the Cluster
-gcloud container clusters delete converter-cluster --zone "us-central1-a"  --project=<project id here>
-
-
-....
+gcloud container clusters delete devops-cluster --zone "us-central1-a"  --project=dev-ops-demo
 
 #### More Kubernetes Commands #####
+kubectl get deployments
 
+kubectl describe deployments devops-deployment
 
+kubectl expose deployment devops-deployment --port=80 --target-port=8080 --type=LoadBalancer
 
+kubectl scale deployment devops-deployment --replicas=10
+
+kubectl autoscale deployment devops-deployment --min=5 --max=10 --cpu-percent=60
 
 
 
