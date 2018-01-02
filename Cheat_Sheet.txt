@@ -77,7 +77,8 @@ kubectl autoscale deployment devops-deployment --min=5 --max=10 --cpu-percent=60
 gcloud app create --region=us-central
 
 # Deploy App Engine (Remove --no-promote to have this version take requests immediately)
-gcloud app deploy --version=one --no-promote
+gcloud app deploy --version=one
+gcloud app deploy --version=two --no-promote
 
 
 
