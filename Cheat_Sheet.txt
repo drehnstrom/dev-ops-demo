@@ -49,6 +49,9 @@ gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" 
 # Deploys the container bsed on YAML configuration
 kubectl create -f kubernetes-config.yaml --validate=false
 
+# Deploys a change based on an updates YAML configuration
+kubectl apply -f kubernetes-config.yaml
+
 # To see the pods - Must be ready takes maybe a minute
 kubectl get pods
 

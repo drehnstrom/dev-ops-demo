@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -19,9 +20,16 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: gcr.io/dev-ops-demo/devops-demo:latest
+        image: gcr.io/drehnstrom-1171/devops-demo:v2.0
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "0.1"
+          limits:
+            memory: "512Mi"
+            cpu: "0.5"
 
 ---
 
@@ -43,7 +51,7 @@ spec:
  
 ---
 
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: devops-deployment
@@ -53,7 +61,7 @@ spec:
     kind: Deployment
     name: devops-deployment
   minReplicas: 3
-  maxReplicas: 10
+  maxReplicas: 6
   metrics:
   - type: Resource
     resource:
