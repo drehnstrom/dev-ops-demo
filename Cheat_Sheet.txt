@@ -76,12 +76,18 @@ kubectl scale deployment devops-deployment --replicas=10
 kubectl autoscale deployment devops-deployment --min=5 --max=10 --cpu-percent=60
 
 
-# App Engine Commands
+### App Engine Commands
 gcloud app create --region=us-central
 
 # Deploy App Engine (Remove --no-promote to have this version take requests immediately)
+# app.yaml is for Flex
 gcloud app deploy --version=one
 gcloud app deploy --version=two --no-promote
+
+# app-standard.yaml is for Standard
+# Standard requires the appengine_config.py file
+gcloud app deploy app-standard.yaml  --version one
+gcloud app deploy app-standard.yaml  --version two --no-promote
 
 
 

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: gcr.io/drehnstrom-1171/devops-demo:v2.0
+        image: gcr.io/dev-ops-demo/devops-demo:latest
         ports:
         - containerPort: 8080
         resources:
@@ -57,7 +57,7 @@ metadata:
   name: devops-deployment
 spec:
   scaleTargetRef:
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v2beta1
     kind: Deployment
     name: devops-deployment
   minReplicas: 3
