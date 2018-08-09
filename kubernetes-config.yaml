@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: gcr.io/dev-ops-demo/devops-demo:latest
+        image: drehnstrom/devops-demo:latest
         ports:
         - containerPort: 8080
         resources:

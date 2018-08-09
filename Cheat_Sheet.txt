@@ -33,6 +33,10 @@ docker push drehnstrom/devops-demo
 # GCP Container Builder to build Docker image
 gcloud container builds submit --tag gcr.io/dev-ops-demo/devops-demo .
 
+gcloud container builds submit --tag gcr.io/cowboys-rock/devops-demo .
+
+
+
 # Pull the container for the GCP Container Registry
 gcloud docker -- pull gcr.io/dev-ops-demo/devops-demo:latest
 
@@ -43,8 +47,12 @@ docker run -d -p 8080:8080 gcr.io/dev-ops-demo/devops-demo
 # Create a cluster in specified project - uses all the defaults
 gcloud container clusters create devops-cluster --zone "us-central1-a" --project=dev-ops-demo
 
+gcloud container clusters create devops-cluster --zone "us-central1-a" --project=cowboys-rock
+
 #  Get authorization to the Cluster
-gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=dev-ops-demo
+gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=dev-ops-dem
+
+gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=cowboys-rock
 
 # Deploys the container bsed on YAML configuration
 kubectl create -f kubernetes-config.yaml --validate=false
@@ -82,7 +90,7 @@ gcloud app create --region=us-central
 # Deploy App Engine (Remove --no-promote to have this version take requests immediately)
 # app.yaml is for Flex
 gcloud app deploy --version=one
-gcloud app deploy --version=two --no-promote
+gcloud app deploy --version=two --no-promotecd 
 
 # app-standard.yaml is for Standard
 # Standard requires the appengine_config.py file
