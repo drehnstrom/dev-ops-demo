@@ -33,7 +33,7 @@ docker push drehnstrom/devops-demo
 # GCP Container Builder to build Docker image
 gcloud container builds submit --tag gcr.io/dev-ops-demo/devops-demo .
 
-gcloud container builds submit --tag gcr.io/cowboys-rock/devops-demo .
+gcloud container builds submit --tag gcr.io/texas-project/devops-demo .
 
 
 
@@ -47,12 +47,12 @@ docker run -d -p 8080:8080 gcr.io/dev-ops-demo/devops-demo
 # Create a cluster in specified project - uses all the defaults
 gcloud container clusters create devops-cluster --zone "us-central1-a" --project=dev-ops-demo
 
-gcloud container clusters create devops-cluster --zone "us-central1-a" --project=cowboys-rock
+gcloud container clusters create devops-cluster --zone "us-central1-a" --project=texas-project
 
 #  Get authorization to the Cluster
 gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=dev-ops-dem
 
-gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=cowboys-rock
+gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=texas-project
 
 # Deploys the container bsed on YAML configuration
 kubectl create -f kubernetes-config.yaml --validate=false
