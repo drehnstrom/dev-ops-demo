@@ -36,10 +36,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: devops-deployment
+  name: devops-deployment-lb
   labels:
     app: devops
-    tier: frontend
+    tier: frontend-lb
 spec:
   type: LoadBalancer
   ports:
@@ -54,7 +54,7 @@ spec:
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: devops-deployment
+  name: devops-deployment-autoscaler
 spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1
