@@ -11,7 +11,7 @@ resources:
       boot: true
       autoDelete: true
       initializeParams:
-        sourceImage: projects/debian-cloud/global/images/family/debian-8
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
     # Add VM to default network and give it an external IP
     networkInterfaces:
     - network: global/networks/default
@@ -39,4 +39,4 @@ resources:
     sourceRanges: ["0.0.0.0/0"]
     allowed:
     - IPProtocol: TCP
-      ports: ["80"]
+      ports: ["80", "8080"]

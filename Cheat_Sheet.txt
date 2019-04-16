@@ -33,7 +33,7 @@ docker push drehnstrom/devops-demo
 # GCP Container Builder to build Docker image
 gcloud builds submit --tag gcr.io/dev-ops-demo/devops-demo:v1.1 .
 
-gcloud builds submit --tag gcr.io/berlin-10-8/devops-demo:v1.0 .
+gcloud builds submit --tag gcr.io/marriott-12-17/devops-demo:v1.1 .
 
 
 
@@ -47,7 +47,7 @@ docker run -d -p 8080:8080 gcr.io/dev-ops-demo/devops-demo
 # Create a cluster in specified project - uses all the defaults
 gcloud container clusters create devops-cluster --zone "us-central1-a" --project=dev-ops-demo
 
-gcloud container clusters create devops-cluster --zone "us-east1-b" --project=eagles-41-patriots-33
+gcloud container clusters create devops-cluster --zone "eu-west2-a" --project=london-12-11
 
 #  Get authorization to the Cluster
 gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=dev-ops-demo
@@ -96,7 +96,7 @@ gcloud app deploy --version=two --no-promote
 # app-standard.yaml is for Standard
 # Standard requires the appengine_config.py file
 gcloud app deploy app-standard.yaml  --version one
-gcloud app deploy app-standard.yaml  --version two --no-promote
+gcloud app deploy app-standard.yaml  --version seven --no-promote
 
 
 

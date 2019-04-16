@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: drehnstrom/devops-demo:latest
+        image: gcr.io/vince-lombardi/packers:v1.0
         ports:
         - containerPort: 8080
         resources:
