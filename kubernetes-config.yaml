@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: gcr.io/vince-lombardi/packers:v1.0
+        image: drehnstrom/certprep:v1
         ports:
         - containerPort: 8080
         resources:
@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: devops-deployment-lb
+  name: devops-service
   labels:
     app: devops
     tier: frontend-lb
@@ -61,7 +61,7 @@ spec:
     kind: Deployment
     name: devops-deployment
   minReplicas: 3
-  maxReplicas: 6
+  maxReplicas: 10
   metrics:
   - type: Resource
     resource:

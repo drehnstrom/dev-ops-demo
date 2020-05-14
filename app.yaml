@@ -1,12 +1,1 @@
-runtime: python27
-api_version: 1
-threadsafe: yes
-service: default
-
-handlers:
-- url: /favicon\.ico
-  static_files: static/favicon.ico
-  upload: static/favicon\.ico
-
-- url: .*
-  script: main.app
+runtime: python37
