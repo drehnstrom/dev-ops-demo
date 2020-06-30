@@ -49,10 +49,23 @@ gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" 
 
 gcloud container clusters get-credentials devops-cluster --zone "us-east1-b" --project=eagles-41-patriots-33
 
-# Deploy without Configuraton file
-kubectl run demo --image=gcr.io/nih-3-19/devops-demo:v1.0 --port=8080 --replicas=1
+# Deploy just the pod
+kubectl run demo-pod --image=gcr.io/nih-3-19/devops-demo:v1.0 
+
+# Get the pods YAML
+kubectl get pods demo-pod -o yaml
+
+# Create a deployment
+kubectl create deployment demo --image=gcr.io/nih-3-19/devops-demo:v1.0
+
 kubectl scale deployments/demo --replicas=3
 kubectl expose deployments/demo --port=80 --target-port=8080 --type=LoadBalancer
+
+# get YAML for a deployment
+kubectl create deployment demo-deployment --image=drehnstrom/altoona:v1.2 --dry-run=client -o YAML
+
+# Output YAML to a file
+kubectl create deployment demo-deployment --image=drehnstrom/altoona:v1.2 --dry-run=client -o YAML >> tmpfile.yaml
 
 # Run Bash Shell in a pod
 kubectl exec -it demo-5cd7644f45-4k6d8 -- /bin/bash
