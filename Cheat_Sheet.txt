@@ -1,0 +1,126 @@
+# git commands
+git add --all
+git commit -a -m "Initial Commit Flask App"
+git push origin master
+
+##### Deployment Manager Commands #####
+gcloud deployment-manager deployments create devops-deployment --config deployment-manager-config.yaml
+gcloud deployment-manager deployments delete devops-deployment
+
+
+#####  DOCKER COMMANDS #########
+docker build -t drehnstrom/devops-demo:latest .
+
+# Run Docker image on Cloud Shell  
+docker run -d -p 8080:8080 drehnstrom/devops-demo
+
+#To find out status of containers
+docker ps
+
+#To stop container
+docker stop <container-id-here>
+
+# To Push, first log into docker
+docker login
+
+#To Push to Docker Hub
+docker push drehnstrom/devops-demo
+
+# GCP Container Builder to build Docker image
+gcloud builds submit --tag gcr.io/dev-ops-demo/devops-demo:v1.1 .
+
+gcloud builds submit --tag gcr.io/some-demos/devops-demo:v1.0 .
+
+
+# Pull the container for the GCP Container Registry
+gcloud docker -- pull gcr.io/dev-ops-demo/devops-demo:latest
+
+# Run Docker image on local machine 
+docker run -d -p 8080:8080 gcr.io/dev-ops-demo/devops-demo
+
+
+# Create a cluster in specified project - uses all the defaults
+gcloud container clusters create devops-cluster --zone "us-central1-a" --project=dev-ops-demo
+
+gcloud container clusters create devops-cluster --zone "eu-west2-a" --project=london-12-11
+
+#  Get authorization to the Cluster
+gcloud container clusters get-credentials devops-cluster --zone "us-central1-a" --project=dev-ops-demo
+
+gcloud container clusters get-credentials devops-cluster --zone "us-east1-b" --project=eagles-41-patriots-33
+
+# Deploy just the pod
+kubectl run demo-pod --image=gcr.io/nih-3-19/devops-demo:v1.0 
+
+# Get the pods YAML
+kubectl get pods demo-pod -o yaml
+
+# Create a deployment
+kubectl create deployment demo --image=gcr.io/nih-3-19/devops-demo:v1.0
+
+kubectl scale deployments/demo --replicas=3
+kubectl expose deployments/demo --port=80 --target-port=8080 --type=LoadBalancer
+
+# get YAML for a deployment
+kubectl create deployment demo-deployment --image=drehnstrom/altoona:v1.2 --dry-run=client -o YAML
+
+# Output YAML to a file
+kubectl create deployment demo-deployment --image=drehnstrom/altoona:v1.2 --dry-run=client -o YAML >> tmpfile.yaml
+
+# Run Bash Shell in a pod
+kubectl exec -it demo-5cd7644f45-4k6d8 -- /bin/bash
+# Once in a pod, you can access the service via the Cluster IP
+curl http://10.40.14.191/
+# Or using DNS name
+curl http://demo.default.svc.cluster.local/
+# or shorter name
+curl http://demo.default/
+
+# Deploys the container based on YAML configuration
+kubectl apply -f kubernetes-config.yaml --validate=false
+
+# Deploys a change based on an updates YAML configuration
+kubectl apply -f kubernetes-config.yaml
+
+# To see the pods - Must be ready takes maybe a minute
+kubectl get pods
+
+# Need the IP Address - Type
+kubectl get service
+
+# To delete the service created by previous command
+kubectl delete -f kubernetes-config.yaml
+
+# Delete the Cluster
+gcloud container clusters delete devops-cluster --zone "us-central1-a"  --project=dev-ops-demo
+
+#### More Kubernetes Commands #####
+kubectl get deployments
+
+kubectl describe deployments devops-deployment
+
+kubectl expose deployment devops-deployment --port=80 --target-port=8080 --type=LoadBalancer
+
+kubectl scale deployment devops-deployment --replicas=10
+
+kubectl autoscale deployment devops-deployment --min=5 --max=10 --cpu-percent=60
+
+
+### App Engine Commands
+gcloud app create --region=us-central
+
+# Deploy App Engine (Remove --no-promote to have this version take requests immediately)
+# app.yaml is for Flex
+gcloud app deploy app-flex.yaml --version=one
+gcloud app deploy app-flex.yaml --version=two --no-promote
+
+
+# app-standard.yaml is for Standard
+# Standard requires the appengine_config.py file
+gcloud app deploy --version one
+gcloud app deploy --version seven --no-promote
+
+
+
+
+

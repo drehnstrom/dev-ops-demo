@@ -1,0 +1,42 @@
+resources:
+# Configure a VM
+- name: devops-vm
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/f1-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
+    # Add VM to default network and give it an external IP
+    networkInterfaces:
+    - network: global/networks/default
+      accessConfigs:
+        - name: External NAT
+          type: ONE_TO_ONE_NAT
+    # Startup Script downloads code from GitHub and runs it
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          apt-get update
+          apt-get install -y git python-pip python-dev build-essential
+          git clone https://github.com/drehnstrom/dev-ops-class.git
+          cd dev-ops-class
+          pip install -r requirements.txt
+          sed -i "s|port=8080|port=80|" main.py
+          python main.py
+          
+# Add firewall rule to open port 80          
+- name: tcp-firewall-rule
+  type: compute.v1.firewall
+  properties:
+    sourceRanges: ["0.0.0.0/0"]
+    allowed:
+    - IPProtocol: TCP
+      ports: ["80", "8080"]
