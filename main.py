@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    model = {"title": "Hello Lions "}
+    model = {"title": "Go Pitt beat Penn State!"}
     return render_template('index.html', model=model)
 
 
