@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: drehnstrom/nih9-10:v1.1
+        image: gcr.io/sodium-mountain-289707/googleclass:v1.1
         ports:
         - containerPort: 8080
         resources:
