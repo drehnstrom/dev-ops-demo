@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: devops-deployment-v2
+  labels:
+    app: devops
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: devops
+        tier: frontend
+    spec:
+      containers:
+      - name: devops-demo
+        image: gcr.io/two-sigma-dar/helloworld:v1.1
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "0.1"
+          limits:
+            memory: "512Mi"
+            cpu: "0.5"
