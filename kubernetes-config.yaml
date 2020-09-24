@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devops-deployment
@@ -20,11 +20,7 @@ spec:
     spec:
       containers:
       - name: devops-demo
-<<<<<<< HEAD
-        image: gcr.io/two-sigma-dar/helloworld:v1.1
-=======
-        image: drehnstrom/utah:v1.0
->>>>>>> ec017662f56c85a7132f8a4030eb872d27585765
+        image: drehnstrom/devops-demo:v1.0
         ports:
         - containerPort: 8080
         resources:
@@ -64,11 +60,7 @@ spec:
     apiVersion: apps/v2beta1
     kind: Deployment
     name: devops-deployment
-<<<<<<< HEAD
   minReplicas: 3
-=======
-  minReplicas: 4
->>>>>>> ec017662f56c85a7132f8a4030eb872d27585765
   maxReplicas: 10
   metrics:
   - type: Resource
