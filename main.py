@@ -6,7 +6,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
+<<<<<<< HEAD
     model = {"title": "Hello 2 Sigma!!!!!!!!!!!!!!"}
+=======
+    model = {"title": "Hello Broadcom!!"}
+>>>>>>> ec017662f56c85a7132f8a4030eb872d27585765
     return render_template('index.html', model=model)
 
 
