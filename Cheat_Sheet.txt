@@ -121,6 +121,16 @@ gcloud app deploy --version one
 gcloud app deploy --version seven --no-promote
 
 
+#### ISTIO
+
+# Deploy App with Ingress
+kubectl apply -f kubernetes-ingress.yaml
+
+# Just show the Deployment with the Envoy Proxies injected
+istioctl kube-inject -f kubernetes-ingress
+
+# Add Istio to each pod
+kubectl apply -f <(istioctl kube-inject -f kubernetes-ingress.yaml)
 
 
 

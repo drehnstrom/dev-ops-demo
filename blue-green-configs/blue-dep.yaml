@@ -1,21 +1,21 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devops-deployment
   labels:
     app: devops
-    tier: frontend
+    version: v1.0
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: devops
-      tier: frontend
+      version: v1.0
   template:
     metadata:
       labels:
         app: devops
-        tier: frontend
+        version: v1.0
     spec:
       containers:
       - name: devops-demo
