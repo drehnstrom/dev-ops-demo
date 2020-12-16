@@ -17,16 +17,16 @@ spec:
     spec:
       containers:
       - name: devops-demo
-        image: drehnstrom/amex:v1.0
+        image: drehnstrom/devops-demo:v1.0
         ports:
         - containerPort: 8080
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "0.1"
+            memory: "2Gi"
+            cpu: "1"
           limits:
-            memory: "512Mi"
-            cpu: "0.5"
+            memory: "3Gi"
+            cpu: "2"
 
 ---
 

@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devops-deployment
+  name: devops-deployment-ing
   labels:
-    app: devops
+    app: devops-ing
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: devops
+      app: devops-ing
   template:
     metadata:
       labels:
-        app: devops
+        app: devops-ing
     spec:
       containers:
-      - name: devops-demo
+      - name: devops-demo-ing
         image: drehnstrom/devops-demo:v1.0
         ports:
         - containerPort: 8080
@@ -32,16 +32,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: devops-service
+  name: devops-service-ing
   labels:
-    app: devops
+    app: devops-ing
 spec:
   type: NodePort
   ports:
   - port: 80
     targetPort: 8080
   selector:
-    app: devops
+    app: devops-ing
 
 ---
 apiVersion: extensions/v1beta1
@@ -50,14 +50,14 @@ metadata:
   name: devops-ingress
 spec:
   backend:
-    serviceName: devops-service
+    serviceName: devops-service-ing
     servicePort: 80
   rules:
   - http:
       paths:
       - path: /*
         backend:
-          serviceName: devops-service
+          serviceName: devops-service-ing
           servicePort: 80
  
 
@@ -70,7 +70,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1
     kind: Deployment
-    name: devops-deployment
+    name: devops-deployment-ing
   minReplicas: 3
   maxReplicas: 10
   metrics:
