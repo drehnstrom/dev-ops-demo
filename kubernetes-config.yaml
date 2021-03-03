@@ -22,11 +22,11 @@ spec:
         - containerPort: 8080
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1"
+            memory: "128Mi"
+            cpu: ".1"
           limits:
-            memory: "3Gi"
-            cpu: "2"
+            memory: "256Mi"
+            cpu: ".5"
 
 ---
 
