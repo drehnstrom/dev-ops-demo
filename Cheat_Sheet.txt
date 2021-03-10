@@ -123,6 +123,11 @@ gcloud app deploy --version seven --no-promote
 
 #### ISTIO
 
+# Enable Istio sidecar proxy
+# Requires istio to be installed in the cluster
+kubectl label namespace default istio-injection=enabled
+
+
 # Deploy App with Ingress
 kubectl apply -f kubernetes-ingress.yaml
 
