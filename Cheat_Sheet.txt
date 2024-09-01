@@ -3,16 +3,12 @@ git add --all
 git commit -a -m "Initial Commit Flask App"
 git push origin master
 
-##### Deployment Manager Commands #####
-gcloud deployment-manager deployments create devops-deployment --config deployment-manager-config.yaml
-gcloud deployment-manager deployments delete devops-deployment
-
 
 #####  DOCKER COMMANDS #########
-docker build -t drehnstrom/devops-demo:latest .
+docker build -t drehnstrom/devops-demo:v1.0 .
 
 # Run Docker image on Cloud Shell  
-docker run -d -p 8080:8080 drehnstrom/devops-demo
+docker run -d -p 8080:8080 drehnstrom/devops-demo:v1.0
 
 #To find out status of containers
 docker ps
